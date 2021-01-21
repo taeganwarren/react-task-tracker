@@ -1,3 +1,6 @@
-node_modules/
-build/
-.eslintcache
+client/node_modules/
+client/build/
+client/.eslintcache
+
+server/node_modules
+server/.env
