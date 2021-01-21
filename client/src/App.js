@@ -53,7 +53,7 @@ function App() {
     await fetch(`http://localhost:5000/api/v1/tasks/${id}`, {
       method: 'DELETE'
     });
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter((task) => task._id !== id));
   }
 
   // Toggle Reminder
@@ -68,7 +68,7 @@ function App() {
       body: JSON.stringify(updatedTask)
     });
     const data = await res.json();
-    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder } : task));
+    setTasks(tasks.map((task) => task._id === id ? { ...task, reminder: data.reminder } : task));
   }
 
   return (
