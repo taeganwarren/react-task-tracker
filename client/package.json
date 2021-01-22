@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
-    "json-server": "^0.16.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
@@ -15,10 +14,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build && mv ./build ../server/build",
     "test": "react-scripts test",
-    "server": "json-server --watch db.json --port 5000",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
