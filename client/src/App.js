@@ -6,6 +6,8 @@ import AddTask from './components/AddTask'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
 
@@ -20,6 +22,29 @@ function App() {
     }
     getTasks();
   }, []);
+
+  // Register User
+  const registerUser = async (username, password) => {
+    const res = await fetch('https://localhost:5000/api/v1/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(username)
+    });
+    const data = await res.json();
+  }
+
+  // Login User
+  const loginUser = async(user) => {
+    const res = await fetch('https://localhost:5000/api/v1/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+  }
 
   // Fetch tasks
   const fetchTasks = async () => {
@@ -60,6 +85,12 @@ function App() {
         </>
       )} />
       <Route path='/about' component={About} />
+      <Route path='/login'>
+      
+      </Route>
+      <Route path='/register'>
+        <Register onRegister={registerUser} />
+      </Route>
       <Footer />
     </div>
     </Router>
