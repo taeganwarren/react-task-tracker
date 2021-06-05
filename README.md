@@ -19,4 +19,4 @@ Running with Docker:
 * Run the docker-compose.yml file
   * `make up` or `docker-compose up`
   * Builds the docker image and runs the app with a MongoDB container
-* Open your brower and navigate to `http://localhost:5000/`
+* Open your brower and navigate to `http://localhost:3000/`
