@@ -1,22 +1,22 @@
 if (process.env.PROJ_ENV === 'development') { require('dotenv').config(); }
 
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const path = require('path');
+import express, { Request, Response } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import path from 'path';
 
-const { connect_to_db } = require('./lib/mongo');
-const { api_router } = require('./api/v1');
+import { connect_to_db } from './lib/mongo';
+import { router } from './api/v1/index';
 
 const app = express();
 app.use(express.json());
 if (process.env.PROJ_ENV === 'development') { app.use(morgan('dev')); }
 app.use(cors());
-app.use('/api/v1', api_router);
+app.use('/api/v1', router);
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', (req, res) => {
+app.get('/*', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 

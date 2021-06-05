@@ -1,4 +1,4 @@
-const Mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const mongo_host = process.env.MONGO_HOST || 'mongo';
 const mongo_port = process.env.MONGO_PORT || 27017;
@@ -10,18 +10,22 @@ const options = {
     useUnifiedTopology: true
 }
 
-exports.connect_to_db = async (callback) => {
+const connect_to_db = async (callback: Function) => {
     console.log('Connecting to database...');
     try {
-        Mongoose.connect(mongo_url, options);
+        mongoose.connect(mongo_url, options);
     } catch (e) {
         console.log(e);
         process.exit();
     }
-    const db = Mongoose.connection;
+    const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', () => {
         console.log('Successfully connected to database');
         callback();
     });
+};
+
+export {
+    connect_to_db
 };

@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 const task_schema = new Schema({
     text: {
@@ -17,4 +17,7 @@ const task_schema = new Schema({
 });
 
 const task = model('tasks', task_schema);
-module.exports.Task = task;
+
+export {
+    task
+};

@@ -1,4 +1,4 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
 const { get_tasks, get_task, add_task, edit_task, delete_task } = require('./controllers/tasks');
@@ -9,4 +9,6 @@ router.post('/tasks', add_task);
 router.put('/tasks/:id', edit_task);
 router.delete('/tasks/:id', delete_task);
 
-module.exports.api_router = router;
+export {
+    router
+};
