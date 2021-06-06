@@ -1,27 +1,34 @@
 import { useState } from 'react'
 
-const Register = ({ onRegister }) => {
+const Register = () => {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmedPassword, setConfirmedPassword ] = useState('');
 
+    // Register User
+    const registerUser = async (username, password, confirmedPassword) => {
+        const res = await fetch('http://localhost:5000/api/v1/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ username, password, confirmedPassword })
+        });
+        const data = await res.json();
+        return;
+    }
+
+    // On submit
     const onSubmit = (e) => {
         e.preventDefault();
-        if (!username || !password || !confirmedPassword) {
-            alert('Please fill in all fields.');
-            return;
-        }
-        if (password !== confirmedPassword) {
-            alert('Passwords must match.');
-            return;
-        }
-        onRegister(username, password);
+        registerUser(username, password, confirmedPassword);
         setUsername('');
         setPassword('');
         setConfirmedPassword('');
     }
 
+    // Return
     return (
         <div>
             <form className='register-form' onSubmit={onSubmit}>
