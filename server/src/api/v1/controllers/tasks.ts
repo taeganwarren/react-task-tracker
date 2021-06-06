@@ -47,8 +47,8 @@ module.exports.edit_task = async (req: Request, res: Response) => {
 module.exports.delete_task = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        await task.findByIdAndDelete({ _id: id });
-        res.status(200).send();
+        const deleted_task = await task.findByIdAndDelete({ _id: id });
+        res.status(200).send(deleted_task);
     } catch (e) {
         console.log(e);
         res.status(500).send('There was an error deleting that task. Please try again later.');
