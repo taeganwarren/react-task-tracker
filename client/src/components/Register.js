@@ -16,7 +16,7 @@ const Register = ({ onRegister }) => {
             alert('Passwords must match.');
             return;
         }
-        onRegister({ username, password });
+        onRegister(username, password);
         setUsername('');
         setPassword('');
         setConfirmedPassword('');

@@ -25,25 +25,26 @@ function App() {
 
   // Register User
   const registerUser = async (username, password) => {
-    const res = await fetch('https://localhost:5000/api/v1/users/register', {
+    const res = await fetch('http://localhost:5000/api/v1/users/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(username)
+      body: JSON.stringify({ username, password })
     });
     const data = await res.json();
   }
 
   // Login User
-  const loginUser = async(user) => {
-    const res = await fetch('https://localhost:5000/api/v1/users/login', {
+  const loginUser = async (username, password) => {
+    const res = await fetch('http://localhost:5000/api/v1/users/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify({ username, password })
     });
+    const data = await res.json();
   }
 
   // Fetch tasks
@@ -86,7 +87,7 @@ function App() {
       )} />
       <Route path='/about' component={About} />
       <Route path='/login'>
-      
+        <Login onLogin={loginUser} />
       </Route>
       <Route path='/register'>
         <Register onRegister={registerUser} />

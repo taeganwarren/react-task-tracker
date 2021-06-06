@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Login = () => {
+const Login = ({ onLogin }) => {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -11,7 +11,7 @@ const Login = () => {
             alert('Please fill in all fields.');
             return;
         }
-        //onAdd({ text });
+        onLogin(username, password);
         setUsername('');
         setPassword('');
     }
