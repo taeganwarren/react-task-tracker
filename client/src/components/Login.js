@@ -1,31 +1,31 @@
-import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { setUsername, setPassword } from '../redux/loginSlice';
 
 const Login = ({ onLogin }) => {
 
-    const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
+    const username = useSelector((state) => state.login.username);
+    const password = useSelector((state) => state.login.password);
+    const dispatch = useDispatch();
 
+    // On Submit
     const onSubmit = (e) => {
         e.preventDefault();
-        if (!username || !password) {
-            alert('Please fill in all fields.');
-            return;
-        }
         onLogin(username, password);
-        setUsername('');
-        setPassword('');
+        dispatch(setUsername(''));
+        dispatch(setPassword(''));
     }
 
+    // Return
     return (
         <div>
             <form className='login-form' onSubmit={onSubmit}>
                 <div className='form-control'>
                     <label>Username</label>
-                    <input type='text' placeholder='Enter username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type='text' placeholder='Enter username' value={username} onChange={(e) => dispatch(setUsername(e.target.value))} />
                 </div>
                 <div className='form-control'>
                     <label>Password</label>
-                    <input type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type='password' placeholder='Enter password' value={password} onChange={(e) => dispatch(setPassword(e.target.value))} />
                 </div>
                 <input type='submit' value='Login' className='btn btn-block' />
             </form>

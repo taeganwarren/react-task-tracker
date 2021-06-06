@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
 
@@ -25,6 +26,30 @@ function App() {
     }
     getTasks();
   }, [dispatch]);
+
+  // Register User
+  const registerUser = async (username, password, confirmedPassword) => {
+    const res = await fetch('http://localhost:5000/api/v1/users/register', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ username, password, confirmedPassword })
+    });
+    const data = await res.json();
+  }
+
+  // Login User
+  const loginUser = async (username, password) => {
+    const res = await fetch('http://localhost:5000/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+  }
 
   // Fetch tasks
   const fetchTasks = async () => {
@@ -66,8 +91,11 @@ function App() {
         </>
       )} />
       <Route path='/about' component={About} />
+      <Route path='/login'>
+        <Login onLogin={loginUser}/>
+      </Route>
       <Route path='/register'>
-        <Register />
+        <Register onRegister={registerUser}/>
       </Route>
       <Footer />
     </div>

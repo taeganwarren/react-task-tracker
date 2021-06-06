@@ -1,29 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setUsername, setPassword, setConfirmedPassword } from '../redux/registerSlice';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
 
     const username = useSelector((state) => state.register.username);
     const password = useSelector((state) => state.register.password);
     const confirmedPassword = useSelector((state) => state.register.confirmedPassword);
     const dispatch = useDispatch();
 
-    // Register User
-    const registerUser = async (username, password, confirmedPassword) => {
-        const res = await fetch('http://localhost:5000/api/v1/users/register', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({ username, password, confirmedPassword })
-        });
-        const data = await res.json();
-    }
-
     // On submit
     const onSubmit = (e) => {
         e.preventDefault();
-        registerUser(username, password, confirmedPassword);
+        onRegister(username, password, confirmedPassword);
         dispatch(setUsername(''));
         dispatch(setPassword(''));
         dispatch(setConfirmedPassword(''));

@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 const register_user = async (req: Request, res: Response) => {
     try {
         console.log(req.body);
-        const { username, password } = req.body;
+        const { username, password, confirmedPassword } = req.body;
         // TODO: correct http code
         res.status(200).send();
     } catch (e) {
@@ -18,6 +18,7 @@ const register_user = async (req: Request, res: Response) => {
 const login_user = async (req: Request, res: Response) => {
     try {
         console.log(req.body);
+        const { username, password } = req.body;
         // TODO: correct http code
         res.status(200).send();
     } catch (e) {
