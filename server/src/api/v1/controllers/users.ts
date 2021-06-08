@@ -39,9 +39,6 @@ const register_user = async (req: Request, res: Response) => {
             return;
         }
         const { username, password, confirmedPassword } = req.body;
-        console.log(username);
-        console.log(password);
-        console.log(confirmedPassword);
         res.status(200).send();
     } catch (e) {
         console.log(e);
