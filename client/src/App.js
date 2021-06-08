@@ -114,12 +114,12 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <Header onAdd={() => dispatch(toggle())} showAdd={addTaskState} />
         <Route
           path="/"
           exact
-          render={(props) => (
+          render={() => (
             <>
+              <Header onAdd={() => dispatch(toggle())} showAdd={addTaskState} />
               {addTaskState && <AddTask onAdd={addTask} />}
               {tasks.length > 0 ? (
                 <Tasks tasks={tasks} onDelete={deleteTask} />
@@ -129,13 +129,36 @@ function App() {
             </>
           )}
         />
-        <Route path="/about" component={About} />
-        <Route path="/login">
-          <Login onLogin={loginUser} />
-        </Route>
-        <Route path="/register">
-          <Register onRegister={registerUser} />
-        </Route>
+        <Route
+          path="/about"
+          exact
+          render={() => (
+            <>
+              <Header title="About" />
+              <About />
+            </>
+          )}
+        />
+        <Route
+          path="/login"
+          exact
+          render={() => (
+            <>
+              <Header title="Login" />
+              <Login onLogin={loginUser} />
+            </>
+          )}
+        />
+        <Route
+          path="/register"
+          exact
+          render={() => (
+            <>
+              <Header title="Register" />
+              <Register onRegister={registerUser} />
+            </>
+          )}
+        />
         <Footer />
       </div>
     </Router>
