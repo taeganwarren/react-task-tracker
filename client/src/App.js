@@ -10,8 +10,7 @@ import {
   setConfirmedPassword,
   setUsernameError,
   setPasswordError,
-  setConfirmedPasswordError,
-  setMismatchedPasswordsError
+  setMismatchedPasswordsError,
 } from "./redux/registerSlice";
 
 import Tasks from "./components/Tasks";
@@ -49,32 +48,26 @@ function App() {
       if (data.username) {
         dispatch(setUsernameError(true));
       } else {
-		dispatch(setUsernameError(false));
-	  }
+        dispatch(setUsernameError(false));
+      }
       if (data.password) {
         dispatch(setPasswordError(true));
       } else {
-		dispatch(setPasswordError(false));
-	  }
-      if (data.confirmedPassword) {
-        dispatch(setConfirmedPasswordError(true));
+        dispatch(setPasswordError(false));
+      }
+      if (data.mismatched) {
+        dispatch(setMismatchedPasswordsError(true));
       } else {
-		dispatch(setConfirmedPasswordError(false));
-	  }
-	  if (data.mismatched) {
-		dispatch(setMismatchedPasswordsError(true));
-	  } else {
-		dispatch(setMismatchedPasswordsError(false));
-	  }
+        dispatch(setMismatchedPasswordsError(false));
+      }
     } else if (res.status === 200) {
-	  dispatch(setUsername(''));
-      dispatch(setPassword(''));
-      dispatch(setConfirmedPassword(''));
-	  dispatch(setUsernameError(false));
-	  dispatch(setPasswordError(false));
-	  dispatch(setConfirmedPasswordError(false));
-	  dispatch(setMismatchedPasswordsError(false));
-	}
+      dispatch(setUsername(""));
+      dispatch(setPassword(""));
+      dispatch(setConfirmedPassword(""));
+      dispatch(setUsernameError(false));
+      dispatch(setPasswordError(false));
+      dispatch(setMismatchedPasswordsError(false));
+    }
   };
 
   // Login User
