@@ -17,9 +17,9 @@ import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import About from "./components/About";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import About from "./pages/About";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   const addTaskState = useSelector((state) => state.addTaskButton.value);
@@ -129,36 +129,15 @@ function App() {
             </>
           )}
         />
-        <Route
-          path="/about"
-          exact
-          render={() => (
-            <>
-              <Header title="About" />
-              <About />
-            </>
-          )}
-        />
-        <Route
-          path="/login"
-          exact
-          render={() => (
-            <>
-              <Header title="Login" />
-              <Login onLogin={loginUser} />
-            </>
-          )}
-        />
-        <Route
-          path="/register"
-          exact
-          render={() => (
-            <>
-              <Header title="Register" />
-              <Register onRegister={registerUser} />
-            </>
-          )}
-        />
+        <Route path="/about" exact>
+          <About />
+        </Route>
+        <Route path="/login" exact>
+          <Login onLogin={loginUser} />
+        </Route>
+        <Route path="/register" exact>
+          <Register onRegister={registerUser} />
+        </Route>
         <Footer />
       </div>
     </Router>
