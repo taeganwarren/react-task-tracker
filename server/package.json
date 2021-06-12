@@ -20,6 +20,7 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
     "@types/mongoose": "^5.11.97",

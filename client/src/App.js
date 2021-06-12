@@ -60,7 +60,7 @@ function App() {
       } else {
         dispatch(setMismatchedPasswordsError(false));
       }
-    } else if (res.status === 200) {
+    } else if (res.status === 201) {
       dispatch(setUsername(""));
       dispatch(setPassword(""));
       dispatch(setConfirmedPassword(""));

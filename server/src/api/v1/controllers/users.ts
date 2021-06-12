@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import validator from 'validator';
+import bcrypt from 'bcryptjs';
+import User from '../models/user';
 
 interface userRegistration {
     username: string,
@@ -38,8 +40,39 @@ const register_user = async (req: Request, res: Response) => {
             res.status(400).send(errors);
             return;
         }
-        const { username, password, confirmedPassword } = req.body;
-        res.status(200).send();
+        const { username, password } = req.body;
+        const checkIfExists = await User.findOne({ username: username }); 
+        if (checkIfExists) {
+            errors.exists = 'User already exists';
+            res.status(400).send(errors);
+            return;
+        } else {
+            const newUser = new User({
+                username: username,
+                password: password
+            });
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send();
+                        return;
+                    } else {
+                        newUser.password = hash;
+                        newUser.save()
+                            .then(() => {
+                                res.status(201).send();
+                                return;
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(500).send();
+                                return;
+                            });
+                    }
+                });
+            });
+        }
     } catch (e) {
         console.log(e);
         res.status(500).send('There was an error registering. Please try again later.');
