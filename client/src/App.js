@@ -11,6 +11,7 @@ import {
   setUsernameError,
   setPasswordError,
   setMismatchedPasswordsError,
+  setUserExistsError
 } from "./redux/registerSlice";
 
 import Tasks from "./components/Tasks";
@@ -59,6 +60,9 @@ function App() {
         dispatch(setMismatchedPasswordsError(true));
       } else {
         dispatch(setMismatchedPasswordsError(false));
+      }
+      if (data.exists) {
+        
       }
     } else if (res.status === 200) {
       dispatch(setUsername(""));

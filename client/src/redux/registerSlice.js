@@ -8,7 +8,8 @@ export const registerSlice = createSlice({
         confirmedPassword: '',
         usernameError: false,
         passwordError: false,
-        mismatchedPasswordsError: false
+        mismatchedPasswordsError: false,
+        userExistsError: false
     },
     reducers: {
         setUsername: (state, action) => {
@@ -28,9 +29,12 @@ export const registerSlice = createSlice({
         },
         setMismatchedPasswordsError: (state, action) => {
             state.mismatchedPasswordsError = action.payload;
+        },
+        setUserExistsError: (state, action) => {
+            state.userExistsError = action.payload;
         }
     }
 });
 
-export const { setUsername, setPassword, setConfirmedPassword, setUsernameError, setPasswordError, setMismatchedPasswordsError } = registerSlice.actions;
+export const { setUsername, setPassword, setConfirmedPassword, setUsernameError, setPasswordError, setMismatchedPasswordsError, setUserExistsError } = registerSlice.actions;
 export default registerSlice.reducer;
