@@ -14,7 +14,7 @@ if (process.env.PROJ_ENV === 'development') { app.use(morgan('dev')); }
 app.use(cors());
 app.use('/api/v1', router);
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/*', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

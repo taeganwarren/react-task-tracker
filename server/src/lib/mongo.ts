@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
-const mongo_host = process.env.MONGO_HOST || 'mongo';
-const mongo_port = process.env.MONGO_PORT || 27017;
-const mongo_db_name = process.env.MONGO_DATABASE || 'task-tracker';
-
-const mongo_url = `mongodb://${mongo_host}:${mongo_port}/${mongo_db_name}`;
+const mongo_url = process.env.MONGO_URL + '';
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
