@@ -2,7 +2,7 @@
 
 Front-end was built by following along with TraversyMedia's React crash course video here: https://www.youtube.com/watch?v=w7ejDZ8SWv8
 
-After building out the front-end, I decided to create my own back-end for the project using MongoDB and Express and then attempt to dockerize the application.
+After building out the front-end, I decided to create my own back-end for the project using MongoDB and Express and then dockerize the full application.
 
 ---
 Running with Docker:
